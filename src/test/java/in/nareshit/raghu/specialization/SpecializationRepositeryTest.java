@@ -12,5 +12,7 @@ import org.springframework.test.annotation.Rollback;
 @Rollback(false)
 @TestMethodOrder(OrderAnnotation.class)
 public class SpecializationRepositeryTest {
+	
+	
 
 }
