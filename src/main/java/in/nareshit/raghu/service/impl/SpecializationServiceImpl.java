@@ -1,4 +1,4 @@
-package in.nareshit.raghu.service;
+package in.nareshit.raghu.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.repo.SpecializationRepositery;
+import in.nareshit.raghu.service.ISpecializationService;
 
 @Service
 public class SpecializationServiceImpl implements ISpecializationService {

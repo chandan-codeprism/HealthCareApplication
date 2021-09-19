@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.service.ISpecializationService;
 
+
 @Controller
 @RequestMapping("/spec")
 public class SpecializationController {
