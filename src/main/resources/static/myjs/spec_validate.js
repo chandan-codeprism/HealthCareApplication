@@ -24,8 +24,21 @@ $(document).ready(function(){
                         $("#specCodeError").css('color','red');
                         specCodeError=false;
                     }else{
-                        $("#specCodeError").hide();
-                        specCodeError=true;
+                       $.ajax({
+                    	url:'checkCode',
+                    	data:{"code":val},
+                    	success:function(respTxt){
+                    		if(respTxt!=''){
+                    			$("#specCodeError").show();
+                                $("#specCodeError").html(respTxt)
+                                $("#specCodeError").css('color','red');
+                                specCodeError=false;
+                    		}else{
+                    			$("#specCodeError").hide();
+                    			specCodeError=true;
+                    		}
+                    	}	
+                       });
                     }
                     return specCodeError;
                 }
@@ -44,8 +57,21 @@ $(document).ready(function(){
                         $("#specNameError").css('color','red');
                         specNameError=false;
                     }else{
-                        $("#specNameError").hide();
-                        specNameError=true;
+                    	 $.ajax({
+                         	url:'checkName',
+                         	data:{"name":val},
+                         	success:function(respTxt){
+                         		if(respTxt!=''){
+                         			$("#specNameError").show();
+                                     $("#specNameError").html(respTxt)
+                                     $("#specNameError").css('color','red');
+                                     specNameError=false;
+                         		}else{
+                         			$("#specNameError").hide();
+                         			specNameError=true;
+                         		}
+                         	}	
+                            });
                     }
                     return specNameError;
                 }
@@ -64,8 +90,21 @@ $(document).ready(function(){
                     $("#specNoteError").css('color','red');
                     specNoteError = false;
                 } else {
-                    $("#specNoteError").hide();
-                    specNoteError = true;
+                	$.ajax({
+                     	url:'checkNote',
+                     	data:{"note":val},
+                     	success:function(respTxt){
+                     		if(respTxt!=''){
+                     			$("#specNoteError").show();
+                                 $("#specNoteError").html(respTxt)
+                                 $("#specNoteError").css('color','red');
+                                 specNoteError=false;
+                     		}else{
+                     			$("#specNoteError").hide();
+                     			specNoteError=true;
+                     		}
+                     	}	
+                        });
                 }
                  return specNoteError;
             }

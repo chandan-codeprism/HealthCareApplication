@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nareshit.raghu.entity.Specialization;
@@ -104,6 +105,57 @@ public class SpecializationController {
 		service.updateSpecialization(specialization);
 		attributes.addAttribute("message","Record ("+specialization.getId()+") is updated");
 		return "redirect:all";
+	}
+	
+	/**
+	 * 7. Read code and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkCode")
+	@ResponseBody
+	public String validateSpecCode(
+			@RequestParam String code
+			) 
+	{
+		String message = "";
+		if(service.isspecCodeExist(code)) {
+			message=code + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 8. Read Name and check with service
+	 * Return message back to UI page
+	 */
+	@GetMapping("/checkName")
+	@ResponseBody
+	public String validatespecName(
+			@RequestParam String name
+			) 
+	{
+		String message="";
+		if(service.isspecNameExist(name)) {
+			message=name + ", is already exist";
+		}
+		return message;
+	}
+	
+	/**
+	 * 9. Read Note and check with service
+	 * Return message back to UI page
+	 */
+	@GetMapping("/checkNote")
+	@ResponseBody
+	public String validatespecNote(
+			@RequestParam String note
+			) 
+	{
+		String message="";
+		if(service.isspecNoteExist(note)) {
+			message=note + ", is already exist";
+		}
+		return message;
 	}
 	
 

@@ -52,4 +52,26 @@ public class SpecializationServiceImpl implements ISpecializationService {
 
 	}
 
+	@Override
+	public boolean isspecCodeExist(String specCode) {
+		/*
+		 * Integer count=repo.getSpecCodeCount(specCode); boolean exist=count>0 ? true :
+		 * false; return exist;
+		 */
+		return repo.getSpecCodeCount(specCode)>0;
+	}
+
+	@Override
+	public boolean isspecNameExist(String specName) {
+		Integer count=repo.getSpecNameCount(specName);
+		boolean exist=count>0 ? true : false;
+		return exist;
+	}
+
+	@Override
+	public boolean isspecNoteExist(String specNote) {
+		
+		return repo.getSpecNoteCount(specNote)>0;
+	}
+
 }

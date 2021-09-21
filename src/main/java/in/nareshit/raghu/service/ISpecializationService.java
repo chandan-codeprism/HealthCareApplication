@@ -11,5 +11,10 @@ public interface ISpecializationService {
 	public void removeSpecialization(Long id);
 	public Specialization getOneSpecialization(Long id);
 	public void updateSpecialization(Specialization spec);
+	
+	public boolean isspecCodeExist(String specCode);
+	public boolean isspecNameExist(String specName);
+	public boolean isspecNoteExist(String specNote);
+	
 
 }
