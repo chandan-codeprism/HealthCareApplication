@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.exception.SpecializationNotFoundException;
 import in.nareshit.raghu.service.ISpecializationService;
+import in.nareshit.raghu.view.SpecializationExcelView;
 
 
 @Controller
@@ -185,6 +187,19 @@ public class SpecializationController {
 			message=note + ", is already exist";
 		}
 		return message;
+	}
+	
+	/**
+	 * 10. Export data excel to file
+	 */
+	@GetMapping("/excel")
+	public ModelAndView exportToExcel() {
+		ModelAndView m = new ModelAndView();
+		m.setView(new SpecializationExcelView());
+		
+		List<Specialization> list = service.getAllSpecialization();
+		m.addObject("list", list);
+		return m;
 	}
 	
 
