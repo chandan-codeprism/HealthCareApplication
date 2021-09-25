@@ -24,9 +24,14 @@ $(document).ready(function(){
                         $("#specCodeError").css('color','red');
                         specCodeError=false;
                     }else{
+                    	var id=0;//for register page
+                    	if($('#id').val()!=undefined){//for edit page
+                    		specCodeError=true;
+                    		id=$('#id').val();
+                    	}
                        $.ajax({
                     	url:'checkCode',
-                    	data:{"code":val},
+                    	data:{"code":val,"id":id},
                     	success:function(respTxt){
                     		if(respTxt!=''){
                     			$("#specCodeError").show();
@@ -57,9 +62,14 @@ $(document).ready(function(){
                         $("#specNameError").css('color','red');
                         specNameError=false;
                     }else{
+                    	var id=0;//for register page
+                    	if($('#id').val()!=undefined){//for edit page
+                    		specNameError=true;
+                    		id=$('#id').val();
+                    	}
                     	 $.ajax({
                          	url:'checkName',
-                         	data:{"name":val},
+                         	data:{"name":val,'id':id},
                          	success:function(respTxt){
                          		if(respTxt!=''){
                          			$("#specNameError").show();
@@ -90,9 +100,14 @@ $(document).ready(function(){
                     $("#specNoteError").css('color','red');
                     specNoteError = false;
                 } else {
+                	var id=0;//for register page
+                	if($('#id').val()!=undefined){//for edit page
+                		specNoteError=true;
+                		id=$('#id').val();
+                	}
                 	$.ajax({
                      	url:'checkNote',
-                     	data:{"note":val},
+                     	data:{"note":val,'id':id},
                      	success:function(respTxt){
                      		if(respTxt!=''){
                      			$("#specNoteError").show();

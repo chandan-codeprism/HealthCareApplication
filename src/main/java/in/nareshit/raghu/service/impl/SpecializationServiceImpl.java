@@ -1,6 +1,7 @@
 package in.nareshit.raghu.service.impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,5 +76,26 @@ public class SpecializationServiceImpl implements ISpecializationService {
 		
 		return repo.getSpecNoteCount(specNote)>0;
 	}
+
+	@Override
+	public boolean isSpecCodeExistForEdit(String specCode, Long id) {
+		
+		return repo.getSpecCodeCountForEdit(specCode, id)>0;
+	}
+
+	@Override
+	public boolean isSpecNameExistForEdit(String specName, Long id) {
+		
+		return repo.getSpecNameCountForEdit(specName, id)>0;
+	}
+
+	@Override
+	public boolean isSpecNoteExistForEdit(String specNote, Long id) {
+		
+		return repo.getSpecNoteCountForEdit(specNote, id)>0;
+	}
+
+	
+	
 
 }

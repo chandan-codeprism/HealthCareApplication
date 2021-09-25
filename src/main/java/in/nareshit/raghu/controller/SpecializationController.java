@@ -145,11 +145,14 @@ public class SpecializationController {
 	@GetMapping("/checkCode")
 	@ResponseBody
 	public String validateSpecCode(
-			@RequestParam String code
+			@RequestParam String code,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isspecCodeExist(code)) {
+		if(id==0 && service.isspecCodeExist(code)) {//register check
+			message=code + ", is already exist";
+		}else if(id!=0 && service.isSpecCodeExistForEdit(code,id)) {//edit check
 			message=code + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
@@ -162,11 +165,14 @@ public class SpecializationController {
 	@GetMapping("/checkName")
 	@ResponseBody
 	public String validatespecName(
-			@RequestParam String name
+			@RequestParam String name,
+			@RequestParam Long id
 			) 
 	{
 		String message="";
-		if(service.isspecNameExist(name)) {
+		if(id==0 && service.isspecNameExist(name)) {
+			message=name + ", is already exist";
+		}else if(id!=0 && service.isSpecNameExistForEdit(name, id)) {
 			message=name + ", is already exist";
 		}
 		return message;
@@ -179,11 +185,14 @@ public class SpecializationController {
 	@GetMapping("/checkNote")
 	@ResponseBody
 	public String validatespecNote(
-			@RequestParam String note
+			@RequestParam String note,
+			@RequestParam Long id
 			) 
 	{
 		String message="";
-		if(service.isspecNoteExist(note)) {
+		if(id==0 && service.isspecNoteExist(note)) {
+			message=note + ", is already exist";
+		}else if(id!=0 && service.isSpecNoteExistForEdit(note, id)) {
 			message=note + ", is already exist";
 		}
 		return message;
