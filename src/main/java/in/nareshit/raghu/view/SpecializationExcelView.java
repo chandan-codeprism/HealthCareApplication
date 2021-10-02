@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.web.servlet.view.document.AbstractXlsView;
+import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import in.nareshit.raghu.entity.Specialization;
 
-public class SpecializationExcelView extends AbstractXlsView {
+public class SpecializationExcelView extends AbstractXlsxView {
 
 	@Override
 	protected void buildExcelDocument(

@@ -11,7 +11,7 @@ import in.nareshit.raghu.repo.DoctorRepositery;
 import in.nareshit.raghu.service.IDoctorService;
 
 @Service
-public class IDoctorSeviceImpl implements IDoctorService {
+public class DoctorSeviceImpl implements IDoctorService {
 	
 	@Autowired
 	private DoctorRepositery repo;

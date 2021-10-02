@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,21 @@ public class Doctor {
 	@Column(name="doc_note_col")
 	private String note;
 	
+	/*
+	 * Photo Upload Local
+	 */
+	@Column(name="img")
+	private String imgLoc;
+	@Column(name="image")
+	private String photos;
+	@Transient
+	private String photosImagePath;
 	
-
+	public String getPhotosImagePath() {
+		if (photos == null || id == null) 
+			return null;
+		else
+			return "/user-photos/" + id + "/" + photos;
+	
+	}
 }
