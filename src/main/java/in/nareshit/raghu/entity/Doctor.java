@@ -20,30 +20,50 @@ import lombok.NoArgsConstructor;
 public class Doctor {
 	
 	@Id
-	@Column(name="doc_fn_id")
+	@Column(name="doc_fn_id",
+			nullable = false
+			)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name="doc_fn_col")
+	@Column(name="doc_fn_col",
+			nullable = false
+			)
 	private String firstName;
-	@Column(name="doc_ln_col")
+	@Column(name="doc_ln_col",
+			nullable = false
+			)
 	private String lastName;
-	@Column(name="doc_mail_col")
+	@Column(name="doc_mail_col",
+			nullable = false
+			)
 	private String email;
-	@Column(name="doc_addr_col")
+	@Column(name="doc_addr_col",
+			nullable = false
+			)
 	private String address;
-	@Column(name="doc_mob_col")
+	@Column(name="doc_mob_col",
+			nullable = false
+			)
 	private String mobile;
-	@Column(name="doc_gen_col")
+	@Column(name="doc_gen_col",
+			nullable = false
+			)
 	private String gender;
-	@Column(name="doc_note_col")
+	@Column(name="doc_note_col",
+			nullable = false
+			)
 	private String note;
 	
 	/*
 	 * Photo Upload Local
 	 */
-	@Column(name="img")
+	@Column(name="img",
+			nullable = false
+			)
 	private String imgLoc;
-	@Column(name="image")
+	@Column(name="image",
+			nullable = false
+			)
 	private String photos;
 	@Transient
 	private String photosImagePath;
