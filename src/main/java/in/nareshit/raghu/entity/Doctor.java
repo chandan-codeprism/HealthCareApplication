@@ -57,22 +57,19 @@ public class Doctor {
 	/*
 	 * Photo Upload Local
 	 */
-	@Column(name="img",
-			nullable = false
-			)
+	@Column(name="img")
 	private String imgLoc;
-	@Column(name="image",
-			nullable = false
-			)
+	@Column(name="image")
 	private String photos;
 	@Transient
 	private String photosImagePath;
-	
+
+
 	public String getPhotosImagePath() {
 		if (photos == null || id == null) 
 			return null;
 		else
 			return "/user-photos/" + id + "/" + photos;
-	
+
 	}
 }

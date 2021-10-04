@@ -20,7 +20,7 @@
           <h3>Doctor Edit</h3>
         </div>
         <div class="card-body">
-            <form th:action="@{/doctor/update}" method="POST" th:object="${doctor}">
+            <form th:action="@{/doctor/update}" method="POST" id="docForm" th:object="${doctor}">
            		 <!-- row#0 -->
                    <div class="row">
                         <div class="col-2">

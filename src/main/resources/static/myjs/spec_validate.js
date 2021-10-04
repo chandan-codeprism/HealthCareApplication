@@ -1,4 +1,4 @@
-        c    $(document).ready(function(){
+        	   $(document).ready(function(){
                 //1.hide error section
                 $("#specCodeError").hide();
                 $("#specNameError").hide();

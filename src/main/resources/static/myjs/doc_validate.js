@@ -31,20 +31,13 @@ $(document).ready(function () {
       $("#firstNameError").html("*<b>firstName</b> must be 4 to 60 chars only");
       $("#firstNameError").css("color", "red");
       firstNameError = false;
-    } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        firstNameError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#firstNameError").hide();
-    	  firstNameError = true;
-      }
-    }
+    }else {
+                    $("#firstNameError").hide();
+                    firstNameError = true;
+                }
     return firstNameError;
   }
-
+  
   function validate_lastName() {
     var val = $("#lastName").val();
     var exp = /^[A-Za-z0-9\s\.]{4,60}$/;
@@ -59,16 +52,9 @@ $(document).ready(function () {
       $("#lastNameError").css("color", "red");
       lastNameError = false;
     } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        lastNameError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#lastNameError").hide();
-    	  lastNameError = true;
-      }
-    }
+                    $("#lastNameError").hide();
+                    lastNameError = true;
+                }
     return lastNameError;
   }
 
@@ -86,16 +72,9 @@ $(document).ready(function () {
       $("#emailError").css("color", "red");
       emailError = false;
     } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        emailError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#emailError").hide();
-    	  emailError = true;
-      }
-    }
+                    $("#emailError").hide();
+                    emailError = true;
+                }
     return emailError;
   }
 
@@ -113,16 +92,9 @@ $(document).ready(function () {
       $("#addressError").css("color", "red");
       addressError = false;
     } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        addressError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#addressError").hide();
-    	  addressError = true;
-      }
-    }
+                    $("#addressError").hide();
+                    addressError = true;
+                }
     return addressError;
   }
 
@@ -140,16 +112,9 @@ $(document).ready(function () {
       $("#mobileError").css("color", "red");
       mobileError = false;
     } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        mobileError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#mobileError").hide();
-    	  mobileError = true;
-      }
-    }
+                    $("#mobileError").hide();
+                    mobileError = true;
+                }
     return mobileError;
   }
 
@@ -163,16 +128,9 @@ $(document).ready(function () {
     } else if (!exp.test(val)) {
       genderError = false;
     } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        genderError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#genderError").hide();
-    	  genderError = true;
-      }
-    }
+                    $("#genderError").hide();
+                    genderError = true;
+                }
     return genderError;
   }
 
@@ -190,16 +148,9 @@ $(document).ready(function () {
       $("#noteError").css("color", "red");
       noteError = false;
     } else {
-      var id = 0; //for register page
-      if ($("#id").val() != undefined) {
-        //for edit page
-        noteError = true;
-        id = $("#id").val();
-      }else{
-    	  $("#noteError").hide();
-    	  noteError = true;
-      }
-    }
+                    $("#noteError").hide();
+                    noteError = true;
+                }
     return noteError;
   }
 
