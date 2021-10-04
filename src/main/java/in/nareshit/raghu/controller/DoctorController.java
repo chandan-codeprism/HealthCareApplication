@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -137,6 +138,108 @@ public class DoctorController {
 		service.updateDoctor(doctor);
 		attributes.addAttribute("message", doctor.getId()+", updated!");
 		return "redirect:all";
+	}
+	
+	/**
+	 * 7. Read first name and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkFirstName")
+	@ResponseBody
+	public String validateFirstName(
+			@RequestParam String firstname
+			) 
+	{
+		String message = "";
+		if(service.isFirstNameExist(firstname)) {
+			message=firstname + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 8. Read last name and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkLastName")
+	@ResponseBody
+	public String validateLastName(
+			@RequestParam String lastname
+			) 
+	{
+		String message = "";
+		if(service.isLastNameExist(lastname)) {
+			message=lastname + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 9. Read email and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkEmail")
+	@ResponseBody
+	public String validateEmail(
+			@RequestParam String emailid
+			) 
+	{
+		String message = "";
+		if(service.isEmailExist(emailid)) {
+			message=emailid + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 10. Read address and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkAddress")
+	@ResponseBody
+	public String validateAddress(
+			@RequestParam String addr
+			) 
+	{
+		String message = "";
+		if(service.isAddressExist(addr)) {
+			message=addr + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 10. Read mobile and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkMobile")
+	@ResponseBody
+	public String validateMobile(
+			@RequestParam String Number
+			) 
+	{
+		String message = "";
+		if(service.isMobileExist(Number)) {
+			message=Number + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 11. Read note and check with service
+	 * 	  Return message back to UI
+	 */
+	@GetMapping("/checkNote")
+	@ResponseBody
+	public String validateNote(
+			@RequestParam String Info
+			) 
+	{
+		String message = "";
+		if(service.isNoteExist(Info)) {
+			message=Info + ", is already exist";
+		}
+		return message;//This is not viewName(it is message)
 	}
 
 }

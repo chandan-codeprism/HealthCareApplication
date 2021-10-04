@@ -12,4 +12,10 @@ public interface IDoctorService {
 	public Doctor getOneDoctor(Long id);
 	public void updateDoctor(Doctor doc);
 	
+	public boolean isFirstNameExist(String firstName);
+	public boolean isLastNameExist(String lastName);
+	public boolean isEmailExist(String email);
+	public boolean isAddressExist(String address);
+	public boolean isMobileExist(String mobile);
+	public boolean isNoteExist(String note);
 }
