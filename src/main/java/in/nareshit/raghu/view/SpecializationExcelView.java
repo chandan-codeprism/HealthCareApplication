@@ -27,7 +27,7 @@ public class SpecializationExcelView extends AbstractXlsxView {
 		 * 1. Define your own excel file name
 		 */
 		
-		response.addHeader("Content-Disposition", "attachment;filename=SPECS.xls");
+		response.addHeader("Content-Disposition", "attachment;filename=SPECS.xlsx");
 		
 		/*
 		 * 2. Read data given by controller

@@ -87,4 +87,40 @@ public class DoctorSeviceImpl implements IDoctorService {
 		return repo.getNoteCount(note)>0;
 	}
 
+	@Override
+	public boolean isFirstNameExistForEdit(String firstName, Long id) {
+		
+		return repo.getFirstNameCountForEdit(firstName, id)>0;
+	}
+
+	@Override
+	public boolean isLastNameExistForEdit(String lastName, Long id) {
+		
+		return repo.getLastNameCountForEdit(lastName, id)>0;
+	}
+
+	@Override
+	public boolean isEmailExistForEdit(String email, Long id) {
+		
+		return repo.getEmailCountForEdit(email, id)>0;
+	}
+
+	@Override
+	public boolean isAddressExistForEdit(String address, Long id) {
+		
+		return repo.getAddressCountForEdit(address, id)>0;
+	}
+
+	@Override
+	public boolean isMobileExistForEdit(String mobile, Long id) {
+		
+		return repo.getMobileCountForEdit(mobile, id)>0;
+	}
+
+	@Override
+	public boolean isNoteExistForEdit(String note, Long id) {
+		
+		return repo.getNoteCountForEdit(note, id)>0;
+	}
+
 }

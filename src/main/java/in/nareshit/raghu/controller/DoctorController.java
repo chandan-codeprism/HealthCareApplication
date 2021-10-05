@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nareshit.raghu.entity.Doctor;
+import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.exception.DoctorNotFoundException;
 import in.nareshit.raghu.service.IDoctorService;
 import in.nareshit.raghu.util.FileUploadUtil;
+import in.nareshit.raghu.view.DoctorExcelView;
+import in.nareshit.raghu.view.SpecializationExcelView;
 
 @Controller
 @RequestMapping("/doctor")
@@ -147,11 +151,14 @@ public class DoctorController {
 	@GetMapping("/checkFirstName")
 	@ResponseBody
 	public String validateFirstName(
-			@RequestParam String firstname
+			@RequestParam String firstname,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isFirstNameExist(firstname)) {
+		if(id==0 && service.isFirstNameExist(firstname)) {//register check
+			message=firstname + ", is already exist";
+		}else if(id!=0 && service.isFirstNameExistForEdit(firstname,id)) {//edit check
 			message=firstname + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
@@ -164,11 +171,14 @@ public class DoctorController {
 	@GetMapping("/checkLastName")
 	@ResponseBody
 	public String validateLastName(
-			@RequestParam String lastname
+			@RequestParam String lastname,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isLastNameExist(lastname)) {
+		if(id==0 && service.isLastNameExist(lastname)) {//register check
+			message=lastname + ", is already exist";
+		}else if(id!=0 && service.isLastNameExistForEdit(lastname,id)) {//edit check
 			message=lastname + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
@@ -181,11 +191,14 @@ public class DoctorController {
 	@GetMapping("/checkEmail")
 	@ResponseBody
 	public String validateEmail(
-			@RequestParam String emailid
+			@RequestParam String emailid,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isEmailExist(emailid)) {
+		if(id==0 && service.isEmailExist(emailid)) {//register check
+			message=emailid + ", is already exist";
+		}else if(id!=0 && service.isEmailExistForEdit(emailid,id)) {//edit check
 			message=emailid + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
@@ -198,11 +211,14 @@ public class DoctorController {
 	@GetMapping("/checkAddress")
 	@ResponseBody
 	public String validateAddress(
-			@RequestParam String addr
+			@RequestParam String addr,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isAddressExist(addr)) {
+		if(id==0 && service.isAddressExist(addr)) {//register check
+			message=addr + ", is already exist";
+		}else if(id!=0 && service.isAddressExistForEdit(addr,id)) {//edit check
 			message=addr + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
@@ -215,11 +231,14 @@ public class DoctorController {
 	@GetMapping("/checkMobile")
 	@ResponseBody
 	public String validateMobile(
-			@RequestParam String Number
+			@RequestParam String Number,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isMobileExist(Number)) {
+		if(id==0 && service.isMobileExist(Number)) {//register check
+			message=Number + ", is already exist";
+		}else if(id!=0 && service.isMobileExistForEdit(Number,id)) {//edit check
 			message=Number + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
@@ -232,14 +251,34 @@ public class DoctorController {
 	@GetMapping("/checkNote")
 	@ResponseBody
 	public String validateNote(
-			@RequestParam String Info
+			@RequestParam String Info,
+			@RequestParam Long id
 			) 
 	{
 		String message = "";
-		if(service.isNoteExist(Info)) {
+		if(id==0 && service.isNoteExist(Info)) {//register check
+			message=Info + ", is already exist";
+		}else if(id!=0 && service.isNoteExistForEdit(Info,id)) {//edit check
 			message=Info + ", is already exist";
 		}
 		return message;//This is not viewName(it is message)
+	}
+	
+	/**
+	 * 12. File Excel Export
+	 * 
+	 */
+	@GetMapping("/excel")
+	public ModelAndView exportToExcel() {
+		ModelAndView m =  new ModelAndView();
+		m.setView(new DoctorExcelView());
+		
+		//read data from DB
+		List<Doctor> list = service.getAllDoctors();
+		//send to Excel Implements class
+		m.addObject("list", list);
+		
+		return m;
 	}
 
 }

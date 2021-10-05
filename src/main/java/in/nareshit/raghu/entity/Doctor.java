@@ -21,45 +21,59 @@ public class Doctor {
 	
 	@Id
 	@Column(name="doc_fn_id",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name="doc_fn_col",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	private String firstName;
 	@Column(name="doc_ln_col",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	private String lastName;
 	@Column(name="doc_mail_col",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	private String email;
 	@Column(name="doc_addr_col",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	private String address;
 	@Column(name="doc_mob_col",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	private String mobile;
 	@Column(name="doc_gen_col",
-			nullable = false
+			nullable = true,
+			unique = true
 			)
 	private String gender;
 	@Column(name="doc_note_col",
-			nullable = false
+			nullable = false,
+			unique = true
 			)
 	private String note;
 	
 	/*
 	 * Photo Upload Local
 	 */
-	@Column(name="img")
+	@Column(name="img",
+			nullable = true,
+			unique = true
+			)
 	private String imgLoc;
-	@Column(name="image")
+	@Column(name="image",
+			nullable = true,
+			unique = true
+			)
 	private String photos;
 	@Transient
 	private String photosImagePath;

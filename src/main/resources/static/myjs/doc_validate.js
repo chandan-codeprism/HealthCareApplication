@@ -5,7 +5,7 @@ $(document).ready(function () {
   $("#emailError").hide();
   $("#addressError").hide();
   $("#mobileError").hide();
-  $("#genderError").hide();
+  /*$("#genderError").hide();*/
   $("#noteError").hide();
 
   //2.define error variable
@@ -14,7 +14,7 @@ $(document).ready(function () {
   var emailError = false;
   var addressError = false;
   var mobileError = false;
-  var genderError = false;
+  /*var genderError = false;*/
   var noteError = false;
 
   //3.validate function
@@ -31,28 +31,32 @@ $(document).ready(function () {
       $("#firstNameError").html("*<b>firstName</b> must be 4 to 60 chars only");
       $("#firstNameError").css("color", "red");
       firstNameError = false;
-    }else {
-                    $("#firstNameError").hide();
-                    firstNameError = true;
-                    $.ajax({
-                    	url:'checkFirstName',
-                    	data:{"firstname":val},
-                    	success:function(respTxt){
-                    		if(respTxt!=''){
-                    			$("#firstNameError").show();
-                                $("#firstNameError").html(respTxt)
-                                $("#firstNameError").css('color','red');
-                                firstNameError=false;
-                    		}else{
-                    			$("#firstNameError").hide();
-                    			firstNameError=true;
-                    		}
-                    	}	
-                       });
-                }
+    } else {
+      var id = 0; //for register page
+      if ($("#id").val() != undefined) {
+        //for edit page
+        firstNameError = true;
+        id = $("#id").val();
+      }
+      $.ajax({
+        url: "checkFirstName",
+        data: { firstname: val, "id":id },
+        success: function (respTxt) {
+          if (respTxt != "") {
+            $("#firstNameError").show();
+            $("#firstNameError").html(respTxt);
+            $("#firstNameError").css("color", "red");
+            firstNameError = false;
+          } else {
+            $("#firstNameError").hide();
+            firstNameError = true;
+          }
+        },
+      });
+    }
     return firstNameError;
   }
-  
+
   function validate_lastName() {
     var val = $("#lastName").val();
     var exp = /^[A-Za-z0-9\s\.]{4,60}$/;
@@ -67,24 +71,28 @@ $(document).ready(function () {
       $("#lastNameError").css("color", "red");
       lastNameError = false;
     } else {
-                    $("#lastNameError").hide();
-                    lastNameError = true;
-                     $.ajax({
-                    	url:'checkLastName',
-                    	data:{"lastname":val},
-                    	success:function(respTxt){
-                    		if(respTxt!=''){
-                    			$("#lastNameError").show();
-                                $("#lastNameError").html(respTxt)
-                                $("#lastNameError").css('color','red');
-                                lastNameError=false;
-                    		}else{
-                    			$("#lastNameError").hide();
-                    			lastNameError=true;
-                    		}
-                    	}	
-                       });
-                }
+      var id = 0; //for register page
+      if ($("#id").val() != undefined) {
+        //for edit page
+        lastNameError = true;
+        id = $("#id").val();
+      }
+      $.ajax({
+        url: "checkLastName",
+        data: { lastname: val, "id":id },
+        success: function (respTxt) {
+          if (respTxt != "") {
+            $("#lastNameError").show();
+            $("#lastNameError").html(respTxt);
+            $("#lastNameError").css("color", "red");
+            lastNameError = false;
+          } else {
+            $("#lastNameError").hide();
+            lastNameError = true;
+          }
+        },
+      });
+    }
     return lastNameError;
   }
 
@@ -102,24 +110,28 @@ $(document).ready(function () {
       $("#emailError").css("color", "red");
       emailError = false;
     } else {
-                    $("#emailError").hide();
-                    emailError = true;
-                    $.ajax({
-                    	url:'checkEmail',
-                    	data:{"emailid":val},
-                    	success:function(respTxt){
-                    		if(respTxt!=''){
-                    			$("#emailError").show();
-                                $("#emailError").html(respTxt)
-                                $("#emailError").css('color','red');
-                                emailError=false;
-                    		}else{
-                    			$("#emailError").hide();
-                    			emailError=true;
-                    		}
-                    	}	
-                       });
-                }
+      var id = 0; //for register page
+      if ($("#id").val() != undefined) {
+        //for edit page
+        emailError = true;
+        id = $("#id").val();
+      }
+      $.ajax({
+        url: "checkEmail",
+        data: { emailid: val, "id":id },
+        success: function (respTxt) {
+          if (respTxt != "") {
+            $("#emailError").show();
+            $("#emailError").html(respTxt);
+            $("#emailError").css("color", "red");
+            emailError = false;
+          } else {
+            $("#emailError").hide();
+            emailError = true;
+          }
+        },
+      });
+    }
     return emailError;
   }
 
@@ -137,24 +149,28 @@ $(document).ready(function () {
       $("#addressError").css("color", "red");
       addressError = false;
     } else {
-                    $("#addressError").hide();
-                    addressError = true;
-                     $.ajax({
-                    	url:'checkAddress',
-                    	data:{"addr":val},
-                    	success:function(respTxt){
-                    		if(respTxt!=''){
-                    			$("#addressError").show();
-                                $("#addressError").html(respTxt)
-                                $("#addressError").css('color','red');
-                                addressError=false;
-                    		}else{
-                    			$("#addressError").hide();
-                    			addressError=true;
-                    		}
-                    	}	
-                       });
-                }
+      var id = 0; //for register page
+      if ($("#id").val() != undefined) {
+        //for edit page
+        addressError = true;
+        id = $("#id").val();
+      }
+      $.ajax({
+        url: "checkAddress",
+        data: { addr: val, "id":id },
+        success: function (respTxt) {
+          if (respTxt != "") {
+            $("#addressError").show();
+            $("#addressError").html(respTxt);
+            $("#addressError").css("color", "red");
+            addressError = false;
+          } else {
+            $("#addressError").hide();
+            addressError = true;
+          }
+        },
+      });
+    }
     return addressError;
   }
 
@@ -172,28 +188,32 @@ $(document).ready(function () {
       $("#mobileError").css("color", "red");
       mobileError = false;
     } else {
-                    $("#mobileError").hide();
-                    mobileError = true;
-                     $.ajax({
-                    	url:'checkMobile',
-                    	data:{"Number":val},
-                    	success:function(respTxt){
-                    		if(respTxt!=''){
-                    			$("#mobileError").show();
-                                $("#mobileError").html(respTxt)
-                                $("#mobileError").css('color','red');
-                                mobileError=false;
-                    		}else{
-                    			$("#mobileError").hide();
-                    			mobileError=true;
-                    		}
-                    	}	
-                       });
-                }
+      var id = 0; //for register page
+      if ($("#id").val() != undefined) {
+        //for edit page
+        mobileError = true;
+        id = $("#id").val();
+      }
+      $.ajax({
+        url: "checkMobile",
+        data: { Number: val, "id":id },
+        success: function (respTxt) {
+          if (respTxt != "") {
+            $("#mobileError").show();
+            $("#mobileError").html(respTxt);
+            $("#mobileError").css("color", "red");
+            mobileError = false;
+          } else {
+            $("#mobileError").hide();
+            mobileError = true;
+          }
+        },
+      });
+    }
     return mobileError;
   }
 
-  function validate_gender() {
+  /*function validate_gender() {
     var val = $("#gender").val();
     if (val == "") {
       $("#genderError").show();
@@ -203,11 +223,11 @@ $(document).ready(function () {
     } else if (!exp.test(val)) {
       genderError = false;
     } else {
-                    $("#genderError").hide();
-                    genderError = true;
-                }
+      $("#genderError").hide();
+      genderError = true;
+    }
     return genderError;
-  }
+  }*/
 
   function validate_note() {
     var val = $("#note").val();
@@ -223,24 +243,28 @@ $(document).ready(function () {
       $("#noteError").css("color", "red");
       noteError = false;
     } else {
-                    $("#noteError").hide();
-                    noteError = true;
-                    $.ajax({
-                    	url:'checkNote',
-                    	data:{"Info":val},
-                    	success:function(respTxt){
-                    		if(respTxt!=''){
-                    			$("#noteError").show();
-                                $("#noteError").html(respTxt)
-                                $("#noteError").css('color','red');
-                                noteError=false;
-                    		}else{
-                    			$("#noteError").hide();
-                    			noteError=true;
-                    		}
-                    	}	
-                       });
-                }
+      var id = 0; //for register page
+      if ($("#id").val() != undefined) {
+        //for edit page
+        noteError = true;
+        id = $("#id").val();
+      }
+      $.ajax({
+        url: "checkNote",
+        data: { Info: val, "id":id },
+        success: function (respTxt) {
+          if (respTxt != "") {
+            $("#noteError").show();
+            $("#noteError").html(respTxt);
+            $("#noteError").css("color", "red");
+            noteError = false;
+          } else {
+            $("#noteError").hide();
+            noteError = true;
+          }
+        },
+      });
+    }
     return noteError;
   }
 
@@ -267,9 +291,9 @@ $(document).ready(function () {
     validate_mobile();
   });
 
-  $("#gender").keyup(function () {
+ /* $("#gender").keyup(function () {
     validate_gender();
-  });
+  });*/
 
   $("#note").keyup(function () {
     validate_note();
@@ -282,7 +306,7 @@ $(document).ready(function () {
     validate_email();
     validate_address();
     validate_mobile();
-    validate_gender();
+    //validate_gender();
     validate_note();
 
     if (
@@ -291,9 +315,9 @@ $(document).ready(function () {
       emailError &&
       addressError &&
       mobileError &&
-      genderError &&
       noteError
-    ) return true;
+    )
+      return true;
     else return false;
   });
 });
