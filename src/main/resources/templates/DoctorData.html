@@ -24,6 +24,7 @@
             <tr class="bg-info text-white">
               <th>IMAGE</th>
               <th>NAME</th>
+              <th>SPECIALIZATION</th>
               <th>EMAIL</th>
               <th>MOBILE</th>
               <th>NOTE</th>
@@ -35,6 +36,7 @@
               <img th:src="${ob.photoLoc}" width="40" height="50" />
               </td>
               <td>[[${ob.firstName + ' ' +ob.lastName}]]</td>
+              <td th:text="${ob.specialization.specName}"></td>
               <td th:text="${ob.email}"></td>
               <td th:text="${ob.mobile}"></td>
               <td th:text="${ob.note}"></td>

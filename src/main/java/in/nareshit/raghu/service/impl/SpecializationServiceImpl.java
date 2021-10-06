@@ -1,7 +1,7 @@
 package in.nareshit.raghu.service.impl;
 
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +9,7 @@ import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.exception.SpecializationNotFoundException;
 import in.nareshit.raghu.repo.SpecializationRepositery;
 import in.nareshit.raghu.service.ISpecializationService;
+import in.nareshit.raghu.util.MyCollectionsUtil;
 
 @Service
 public class SpecializationServiceImpl implements ISpecializationService {
@@ -93,6 +94,13 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	public boolean isSpecNoteExistForEdit(String specNote, Long id) {
 		
 		return repo.getSpecNoteCountForEdit(specNote, id)>0;
+	}
+
+	@Override
+	public Map<Long, String> getSpecIdAndName() {
+		List<Object[]> list = repo.getSpecIdAndName();
+		Map<Long,String> map = MyCollectionsUtil.convertToMap(list);
+		return map;
 	}
 
 	
