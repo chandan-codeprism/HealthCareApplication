@@ -1,29 +1,23 @@
 package in.nareshit.raghu.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nareshit.raghu.entity.Doctor;
-import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.exception.DoctorNotFoundException;
 import in.nareshit.raghu.service.IDoctorService;
-import in.nareshit.raghu.util.FileUploadUtil;
 import in.nareshit.raghu.view.DoctorExcelView;
-import in.nareshit.raghu.view.SpecializationExcelView;
 
 @Controller
 @RequestMapping("/doctor")
@@ -51,22 +45,21 @@ public class DoctorController {
 	@PostMapping("/save")
 	public String save(
 			@ModelAttribute Doctor doctor,
-			@RequestParam("docImg") MultipartFile multipartFile,//For LocalImg upload
+			//@RequestParam("docImg") MultipartFile multipartFile,//For LocalImg upload
 			RedirectAttributes atrAttributes
 			) 
 	{
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		doctor.setPhotos(fileName);
+		//String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		//doctor.setPhotos(fileName);
 		
 		Long id = service.savaDoctor(doctor);
 		atrAttributes.addAttribute("message", "Doctor ("+id+") is created");
 		
-		String uploadDir = "user-photos/" + id;
-		try {
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		/*
+		 * String uploadDir = "user-photos/" + id; try {
+		 * FileUploadUtil.saveFile(uploadDir, fileName, multipartFile); } catch
+		 * (IOException e) { e.printStackTrace(); }
+		 */
 		
 		return "redirect:register";
 	}

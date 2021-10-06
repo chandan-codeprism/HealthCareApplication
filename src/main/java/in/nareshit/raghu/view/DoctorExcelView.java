@@ -84,8 +84,8 @@ public class DoctorExcelView extends AbstractXlsxView {
 			row.createCell(5).setCellValue(spec.getGender());
 			row.createCell(6).setCellValue(spec.getMobile());
 			row.createCell(7).setCellValue(spec.getNote());
-			row.createCell(8).setCellValue(spec.getPhotos());
-			row.createCell(9).setCellValue(spec.getImgLoc());
+			//row.createCell(8).setCellValue(spec.getPhotos());
+			//row.createCell(9).setCellValue(spec.getImgLoc());
 		}
 		
 		

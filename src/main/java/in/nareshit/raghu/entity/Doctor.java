@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,7 +51,7 @@ public class Doctor {
 	private String mobile;
 	@Column(name="doc_gen_col",
 			nullable = true,
-			unique = true
+			unique = false
 			)
 	private String gender;
 	@Column(name="doc_note_col",
@@ -62,28 +60,23 @@ public class Doctor {
 			)
 	private String note;
 	
+	@Column(name="doc_img_col")
+	private String photoLoc;
+	
 	/*
 	 * Photo Upload Local
 	 */
-	@Column(name="img",
-			nullable = true,
-			unique = true
-			)
-	private String imgLoc;
-	@Column(name="image",
-			nullable = true,
-			unique = true
-			)
-	private String photos;
-	@Transient
-	private String photosImagePath;
-
-
-	public String getPhotosImagePath() {
-		if (photos == null || id == null) 
-			return null;
-		else
-			return "/user-photos/" + id + "/" + photos;
-
-	}
+	/*
+	 * @Column(name="img", nullable = true, unique = true ) private String imgLoc;
+	 * 
+	 * @Column(name="image", nullable = true, unique = true ) private String photos;
+	 * 
+	 * @Transient private String photosImagePath;
+	 * 
+	 * 
+	 * public String getPhotosImagePath() { if (photos == null || id == null) return
+	 * null; else return "/user-photos/" + id + "/" + photos;
+	 * 
+	 * }
+	 */
 }
