@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -65,7 +63,6 @@ public class Doctor {
 	private String note;
 	
 	@Column(name="doc_img_col")
-	
 	private String photoLoc;
 	
 	/*

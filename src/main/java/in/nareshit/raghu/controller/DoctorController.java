@@ -3,6 +3,7 @@ package in.nareshit.raghu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import in.nareshit.raghu.entity.Doctor;
 import in.nareshit.raghu.exception.DoctorNotFoundException;
 import in.nareshit.raghu.service.IDoctorService;
 import in.nareshit.raghu.service.ISpecializationService;
+import in.nareshit.raghu.util.MyMailUtil;
 import in.nareshit.raghu.view.DoctorExcelView;
 
 @Controller
@@ -29,6 +31,9 @@ public class DoctorController {
 	
 	@Autowired
 	private ISpecializationService specializationService;
+	
+	@Autowired
+	private MyMailUtil mailUtil;
 	
 	private void createDynamicUi(Model model) {
 		model.addAttribute("specializations", specializationService.getSpecIdAndName());
@@ -62,8 +67,29 @@ public class DoctorController {
 		//doctor.setPhotos(fileName);
 		
 		Long id = service.savaDoctor(doctor);
-		atrAttributes.addAttribute("message", "Doctor ("+id+") is created");
-		
+		String message = "Doctor ("+id+") is created";
+		atrAttributes.addAttribute("message", message);
+		if(id!=null) {
+			
+			//JDK 1.7 or before
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					
+				}
+			}).start();
+			
+			/*
+			 * //JDK 1.8 Lambda Expression new Thread(()->{
+			 * 
+			 * }).start();
+			 */
+			
+			mailUtil.send(doctor.getEmail(), "SUCCESS", message, 
+					new ClassPathResource("/static/myres/chandan.pdf"));
+		}
 		/*
 		 * String uploadDir = "user-photos/" + id; try {
 		 * FileUploadUtil.saveFile(uploadDir, fileName, multipartFile); } catch
