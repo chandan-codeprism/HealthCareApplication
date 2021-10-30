@@ -1,6 +1,7 @@
 package in.nareshit.raghu.service;
 
 import java.util.List;
+import java.util.Map;
 
 import in.nareshit.raghu.entity.Doctor;
 
@@ -25,4 +26,7 @@ public interface IDoctorService {
 	public boolean isAddressExistForEdit(String address,Long id);
 	public boolean isMobileExistForEdit(String mobile,Long id);
 	public boolean isNoteExistForEdit(String note,Long id);
+	
+	
+	public Map<Long,String> getDoctorIdAndNames();
 }

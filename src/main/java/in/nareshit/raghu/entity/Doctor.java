@@ -16,55 +16,31 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="doctor_tab")
+@Table(name = "doctor_tab")
 public class Doctor {
-	
+
 	@Id
-	@Column(name="doc_fn_id",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_fn_id", nullable = false, unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name="doc_fn_col",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_fn_col", nullable = false, unique = true)
 	private String firstName;
-	@Column(name="doc_ln_col",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_ln_col", nullable = false, unique = true)
 	private String lastName;
-	@Column(name="doc_mail_col",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_mail_col", nullable = false, unique = true)
 	private String email;
-	@Column(name="doc_addr_col",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_addr_col", nullable = false, unique = true)
 	private String address;
-	@Column(name="doc_mob_col",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_mob_col", nullable = false, unique = true)
 	private String mobile;
-	@Column(name="doc_gen_col",
-			nullable = true,
-			unique = false
-			)
+	@Column(name = "doc_gen_col", nullable = true, unique = false)
 	private String gender;
-	@Column(name="doc_note_col",
-			nullable = false,
-			unique = true
-			)
+	@Column(name = "doc_note_col", nullable = false, unique = true)
 	private String note;
-	
-	@Column(name="doc_img_col")
+
+	@Column(name = "doc_img_col")
 	private String photoLoc;
-	
+
 	/*
 	 * Photo Upload Local
 	 */
@@ -81,12 +57,11 @@ public class Doctor {
 	 * 
 	 * }
 	 */
-	
-	
-	//---------------Association Mapping------------------//
-	
-		@ManyToOne
-		@JoinColumn(name="spec_id_fk_col")
-		private Specialization specialization;//HAS-A
-	
+
+	// ---------------Association Mapping------------------//
+
+	@ManyToOne
+	@JoinColumn(name = "spec_id_fk_col")
+	private Specialization specialization;// HAS-A
+
 }

@@ -16,40 +16,31 @@
     <div class="container">
       <div class="card">
         <div class="card-header bg-primary text-center text-white">
-          <h3>Doctor Data</h3>
+          <h3>Patient Data</h3>
         </div>
         <div class="card-body">
-        <a th:href="@{/doctor/excel}" class="btn btn-success">Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i></a>
           <table class="table table-hover">
             <tr class="bg-info text-white">
-              <th>IMAGE</th>
               <th>NAME</th>
-              <th>SPECIALIZATION</th>
-              <th>EMAIL</th>
+              <th>GENDER</th>
               <th>MOBILE</th>
-              <th>NOTE</th>
-              <th>ADDRESS</th>
+              <th>MEDICAL HISTORY</th>
               <th>OPERATION</th>
             </tr>
             <tr th:each="ob:${list}">
-              <td>
-              	<img th:src="${ob.photoLoc}" width="40" height="50" />
-              </td>
               <td>[[${ob.firstName + ' ' +ob.lastName}]]</td>
-              <td th:text="${ob.specialization.specName}"></td>
-              <td th:text="${ob.email}"></td>
+              <td th:text="${ob.gender}"></td>
               <td th:text="${ob.mobile}"></td>
-              <td th:text="${ob.note}"></td>
-              <td th:text="${ob.address}"></td>
+              <td>[[${ob.mediHistory +"-"+ ob.ifOther}]]</td>
               <td>
                 <a
-                  th:href="@{/doctor/delete(id=${ob.id})}"
+                  th:href="@{/patient/delete(id=${ob.id})}"
                   class="btn btn-danger"
                   >DELETE <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </a>
                 |
                 <a
-                  th:href="@{/doctor/edit(id=${ob.id})}"
+                  th:href="@{/patient/edit(id=${ob.id})}"
                   class="btn btn-warning"
                   >EDIT <i class="fa fa-pencil-square-o" aria-hidden="true"></i
                 ></a>
