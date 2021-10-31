@@ -6,22 +6,41 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.nareshit.raghu.constant.UserRoles;
 import in.nareshit.raghu.entity.Doctor;
+import in.nareshit.raghu.entity.User;
 import in.nareshit.raghu.exception.DoctorNotFoundException;
 import in.nareshit.raghu.repo.DoctorRepositery;
 import in.nareshit.raghu.service.IDoctorService;
+import in.nareshit.raghu.service.IUserService;
 import in.nareshit.raghu.util.MyCollectionsUtil;
+import in.nareshit.raghu.util.UserUtil;
 
 @Service
 public class DoctorSeviceImpl implements IDoctorService {
 	
 	@Autowired
 	private DoctorRepositery repo;
+	@Autowired
+	private IUserService userservice;
+	@Autowired
+	private UserUtil util;
 
 	@Override
 	public long savaDoctor(Doctor doc) {
 		
-		return repo.save(doc).getId();
+		Long id= repo.save(doc).getId();
+		if(id!=null) {
+			User user=new User();
+			user.setDisplayName(doc.getFirstName()+" "+doc.getLastName());
+			user.setUsername(doc.getEmail());
+			user.setPassword(util.genPwd());
+			user.setRole(UserRoles.DOCTOR.name());
+			userservice.saveUser(user);
+			//TODO: email part is pending
+		}
+		
+		return id;
 	}
 
 	@Override
