@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import in.nareshit.raghu.constant.UserRoles;
+import in.nareshit.raghu.constants.UserRoles;
 import in.nareshit.raghu.entity.Patient;
 import in.nareshit.raghu.entity.User;
 import in.nareshit.raghu.repo.PatientRepository;

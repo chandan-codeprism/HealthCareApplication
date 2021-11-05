@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyMailUtil {
 	
-	@Autowired
+	@Autowired()
 	private JavaMailSender mailSender;
 	
 	public boolean send(

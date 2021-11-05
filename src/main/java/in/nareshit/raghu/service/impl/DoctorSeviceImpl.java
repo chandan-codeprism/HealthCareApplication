@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import in.nareshit.raghu.constant.UserRoles;
+import in.nareshit.raghu.constants.UserRoles;
 import in.nareshit.raghu.entity.Doctor;
 import in.nareshit.raghu.entity.User;
 import in.nareshit.raghu.exception.DoctorNotFoundException;

@@ -7,7 +7,6 @@ spring:
     username: root
     password: password
     
-    
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
@@ -26,5 +25,9 @@ spring:
        starttls:
          enable: true
      
+master:
+ user:
+  name: NIT-Chandan
+  email: nckr2014@gmail.com
       
     
