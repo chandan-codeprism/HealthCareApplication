@@ -14,6 +14,6 @@ function uploadFile() {
 
     $.ajax(inputs).done(function (response) {
       var job = JSON.parse(response);
-      $("#photoLoc").val("src", job.data.url);
+      $("#photoLoc").val(job.data.url);
     });
   }

@@ -12,11 +12,11 @@ import in.nareshit.raghu.entity.User;
 import in.nareshit.raghu.repo.PatientRepository;
 import in.nareshit.raghu.service.IPatientService;
 import in.nareshit.raghu.service.IUserService;
+import in.nareshit.raghu.util.MyMailUtil;
 import in.nareshit.raghu.util.UserUtil;
 
 /**
- * @author:RAGHU SIR 
- *  Generated F/w:SHWR-Framework 
+ * @author:RAGHU SIR Generated F/w:SHWR-Framework
  */
 @Service
 public class PatientServiceImpl implements IPatientService {
@@ -26,21 +26,30 @@ public class PatientServiceImpl implements IPatientService {
 	private IUserService userservice;
 	@Autowired
 	private UserUtil util;
+	@Autowired
+	private MyMailUtil mailUtil;
 
 	@Override
 	@Transactional
 	public Long savePatient(Patient patient) {
-		Long id= repo.save(patient).getId();
-		if(id!=null) {
-			User user=new User();
-			user.setDisplayName(patient.getFirstName()+" "+patient.getLastName());
+		Long id = repo.save(patient).getId();
+		if (id != null) {
+			String pwd = util.genPwd();
+			User user = new User();
+			user.setDisplayName(patient.getFirstName() + " " + patient.getLastName());
 			user.setUsername(patient.getEmail());
-			user.setPassword(util.genPwd());
+			user.setPassword(pwd);
 			user.setRole(UserRoles.PATIENT.name());
-			userservice.saveUser(user);
-			//TODO: email part is pending
+			Long genId = userservice.saveUser(user);
+			if (genId != null)
+				new Thread(new Runnable() {
+
+					public void run() {
+						String text = "Your name is " + patient.getEmail() + ", password is " + pwd;
+						mailUtil.send(patient.getEmail(), "PATIENT ADDED", text);
+					}
+				}).start();
 		}
-		
 		return id;
 	}
 
@@ -57,17 +66,13 @@ public class PatientServiceImpl implements IPatientService {
 	}
 
 	@Override
-	@Transactional(
-			readOnly = true
-			)
+	@Transactional(readOnly = true)
 	public Patient getOnePatient(Long id) {
 		return repo.findById(id).get();
 	}
 
 	@Override
-	@Transactional(
-			readOnly = true
-			)
+	@Transactional(readOnly = true)
 	public List<Patient> getAllPatients() {
 		return repo.findAll();
 	}
