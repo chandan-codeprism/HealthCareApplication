@@ -7,19 +7,19 @@ import in.nareshit.raghu.entity.Specialization;
 
 public interface ISpecializationService {
 	
-	public long savaSpecialization(Specialization spec);
-	public List<Specialization> getAllSpecialization();
-	public void removeSpecialization(Long id);
-	public Specialization getOneSpecialization(Long id);
-	public void updateSpecialization(Specialization spec);
+	long savaSpecialization(Specialization spec);
+	List<Specialization> getAllSpecialization();
+	void removeSpecialization(Long id);
+	Specialization getOneSpecialization(Long id);
+	void updateSpecialization(Specialization spec);
 	
-	public boolean isspecCodeExist(String specCode);
-	public boolean isspecNameExist(String specName);
-	public boolean isspecNoteExist(String specNote);
+	boolean isspecCodeExist(String specCode);
+	boolean isspecNameExist(String specName);
+	boolean isspecNoteExist(String specNote);
 	
-	public boolean isSpecCodeExistForEdit(String specCode, Long id);
-	public boolean isSpecNameExistForEdit(String specName, Long id);
-	public boolean isSpecNoteExistForEdit(String specNote, Long id);
+	boolean isSpecCodeExistForEdit(String specCode, Long id);
+	boolean isSpecNameExistForEdit(String specName, Long id);
+	boolean isSpecNoteExistForEdit(String specNote, Long id);
 	
 	Map<Long,String> getSpecIdAndName();
 

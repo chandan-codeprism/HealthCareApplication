@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import in.nareshit.raghu.entity.Doctor;
 
-public interface DoctorRepositery extends JpaRepository<Doctor, Long> {
+public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 	
 	@Query("SELECT COUNT(firstName) FROM Doctor WHERE firstName=:firstName")
 	Integer getFirstNameCount(String firstName);
@@ -45,9 +45,10 @@ public interface DoctorRepositery extends JpaRepository<Doctor, Long> {
 	
 	@Query("SELECT COUNT(note) FROM Doctor WHERE note=:note AND id!=:id")
 	Integer getNoteCountForEdit(String note, Long id);
-	
-	
-	
+
 	@Query("SELECT id, firstName, lastName FROM Doctor")
-	public List<Object[]> getDoctorIdAndNames();
+	List<Object[]> getDoctorIdAndNames();
+
+	@Query("SELECT doct FROM Doctor doct INNER JOIN doct.specialization as spc WHERE spc.id=:specId")
+	public List<Doctor> findDoctorBySpecName(Long specId);
 }

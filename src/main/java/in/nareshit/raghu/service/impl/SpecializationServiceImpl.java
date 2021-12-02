@@ -2,20 +2,21 @@ package in.nareshit.raghu.service.impl;
 
 import java.util.List;
 import java.util.Map;
+
+import in.nareshit.raghu.repo.SpecializationRepository;
+import in.nareshit.raghu.service.ISpecializationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.nareshit.raghu.entity.Specialization;
 import in.nareshit.raghu.exception.SpecializationNotFoundException;
-import in.nareshit.raghu.repo.SpecializationRepositery;
-import in.nareshit.raghu.service.ISpecializationService;
 import in.nareshit.raghu.util.MyCollectionsUtil;
 
 @Service
 public class SpecializationServiceImpl implements ISpecializationService {
 	
 	@Autowired
-	private SpecializationRepositery repo;
+	private SpecializationRepository repo;
 
 	@Override
 	public long savaSpecialization(Specialization spec) {
@@ -68,7 +69,7 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	@Override
 	public boolean isspecNameExist(String specName) {
 		Integer count=repo.getSpecNameCount(specName);
-		boolean exist=count>0 ? true : false;
+		boolean exist= count > 0;
 		return exist;
 	}
 
@@ -102,8 +103,5 @@ public class SpecializationServiceImpl implements ISpecializationService {
 		Map<Long,String> map = MyCollectionsUtil.convertToMap(list);
 		return map;
 	}
-
-	
-	
 
 }

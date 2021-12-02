@@ -3,6 +3,7 @@ package in.nareshit.raghu.service.impl;
 import java.util.Collections;
 import java.util.Optional;
 
+import in.nareshit.raghu.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import in.nareshit.raghu.entity.User;
-import in.nareshit.raghu.repo.UserRepositery;
 import in.nareshit.raghu.service.IUserService;
 
 @Service
@@ -22,7 +22,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
-	private UserRepositery repo;
+	private UserRepository repo;
 
 	@Override
 	public Long saveUser(User user) {

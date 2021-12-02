@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 //JDK 8(static and default are allowed)
 public interface MyCollectionsUtil {
 
-	public static Map<Long, String> convertToMap(List<Object[]> list) {
+	static Map<Long, String> convertToMap(List<Object[]> list) {
 		//Java 8 Stream API
 		Map<Long,String> map =
 				list
@@ -19,7 +19,7 @@ public interface MyCollectionsUtil {
 		return map;
 	}
 	
-	public static Map<Long, String> convertToMapIndex(List<Object[]> list) {
+	static Map<Long, String> convertToMapIndex(List<Object[]> list) {
 		//Java 8 Stream API
 		Map<Long,String> map =
 				list

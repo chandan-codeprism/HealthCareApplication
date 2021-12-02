@@ -10,6 +10,7 @@
 				<h3>Specialization Edit</h3>
 			</div>
 			<div class="card-body">
+				<!--/*@thymesVar id="specialization" type=""*/-->
 				<form th:action="@{/spec/update}" method="POST" id="specForm"
 					th:object="${specialization}">
 					<!-- row#0 -->

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import in.nareshit.raghu.entity.Specialization;
 
-public interface SpecializationRepositery extends JpaRepository<Specialization, Long> {
+public interface SpecializationRepository extends JpaRepository<Specialization, Long> {
 	
 	@Query("SELECT COUNT(specCode) FROM Specialization WHERE specCode=:specCode")
 	Integer getSpecCodeCount(String specCode);

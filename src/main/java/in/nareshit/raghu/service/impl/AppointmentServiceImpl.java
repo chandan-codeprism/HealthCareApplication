@@ -52,4 +52,5 @@ public class AppointmentServiceImpl implements IAppointmentService {
 	public List<Appointment> getAllAppointments() {
 		return repo.findAll();
 	}
+
 }

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import in.nareshit.raghu.entity.User;
 
-public interface UserRepositery extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 	
 	
 	Optional<User> findByUsername(String username);

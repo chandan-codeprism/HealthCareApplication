@@ -41,23 +41,6 @@ public class Doctor {
 	@Column(name = "doc_img_col")
 	private String photoLoc;
 
-	/*
-	 * Photo Upload Local
-	 */
-	/*
-	 * @Column(name="img", nullable = true, unique = true ) private String imgLoc;
-	 * 
-	 * @Column(name="image", nullable = true, unique = true ) private String photos;
-	 * 
-	 * @Transient private String photosImagePath;
-	 * 
-	 * 
-	 * public String getPhotosImagePath() { if (photos == null || id == null) return
-	 * null; else return "/user-photos/" + id + "/" + photos;
-	 * 
-	 * }
-	 */
-
 	// ---------------Association Mapping------------------//
 
 	@ManyToOne

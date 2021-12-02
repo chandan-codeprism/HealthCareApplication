@@ -35,7 +35,7 @@
                     	success:function(respTxt){
                     		if(respTxt!=''){
                     			$("#specCodeError").show();
-                                $("#specCodeError").html(respTxt)
+                                $("#specCodeError").html(respTxt);
                                 $("#specCodeError").css('color','red');
                                 specCodeError=false;
                     		}else{
@@ -73,7 +73,7 @@
                          	success:function(respTxt){
                          		if(respTxt!=''){
                          			$("#specNameError").show();
-                                     $("#specNameError").html(respTxt)
+                                     $("#specNameError").html(respTxt);
                                      $("#specNameError").css('color','red');
                                      specNameError=false;
                          		}else{
@@ -91,12 +91,12 @@
                 var exp = /^[A-Za-z0-9\s\.\-\,\']{10,250}$/;
                 if(val=='') {
                     $("#specNoteError").show();
-                    $("#specNoteError").html("*<b>Note</b> Can not be empty")
+                    $("#specNoteError").html("*<b>Note</b> Can not be empty");
                     $("#specNoteError").css('color','red');
                     specNoteError = false;
                 } else if(!exp.test(val)) {
                     $("#specNoteError").show();
-                    $("#specNoteError").html("*<b>Note</b> can have 10 to 250 chars[A-Za-z0-9.,-(space)]")
+                    $("#specNoteError").html("*<b>Note</b> can have 10 to 250 chars[A-Za-z0-9.,-(space)]");
                     $("#specNoteError").css('color','red');
                     specNoteError = false;
                 } else {
@@ -111,7 +111,7 @@
                      	success:function(respTxt){
                      		if(respTxt!=''){
                      			$("#specNoteError").show();
-                                 $("#specNoteError").html(respTxt)
+                                 $("#specNoteError").html(respTxt);
                                  $("#specNoteError").css('color','red');
                                  specNoteError=false;
                      		}else{

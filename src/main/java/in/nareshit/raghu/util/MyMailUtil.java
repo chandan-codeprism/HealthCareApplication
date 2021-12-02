@@ -15,13 +15,13 @@ public class MyMailUtil {
 	private JavaMailSender mailSender;
 	
 	public boolean send(
-			String to[],
-			String cc[],
-			String bcc[],
-			String Subject,
-			String text,
-			Resource files[]
-			) 
+            String[] to,
+            String[] cc,
+            String[] bcc,
+            String Subject,
+            String text,
+            Resource[] files
+    )
 	{
 		boolean sent = false;
 		try {

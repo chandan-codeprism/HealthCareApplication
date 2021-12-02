@@ -34,9 +34,8 @@ public class Appointment {
 	@Column(name = "id")
 	private Long id;
 
-	/*
-	 * Association Mapping
-	 */
+	//-----------Association Mapping-------------//
+
 	@ManyToOne
 	@JoinColumn(name = "app_doc_id_fk_col")
 	public Doctor doctor;

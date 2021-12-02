@@ -1,27 +1,26 @@
 package in.nareshit.raghu.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import in.nareshit.raghu.constants.UserRoles;
 import in.nareshit.raghu.entity.Doctor;
 import in.nareshit.raghu.entity.User;
 import in.nareshit.raghu.exception.DoctorNotFoundException;
-import in.nareshit.raghu.repo.DoctorRepositery;
+import in.nareshit.raghu.repo.DoctorRepository;
 import in.nareshit.raghu.service.IDoctorService;
 import in.nareshit.raghu.service.IUserService;
 import in.nareshit.raghu.util.MyCollectionsUtil;
 import in.nareshit.raghu.util.MyMailUtil;
 import in.nareshit.raghu.util.UserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class DoctorSeviceImpl implements IDoctorService {
 
 	@Autowired
-	private DoctorRepositery repo;
+	private DoctorRepository repo;
 	@Autowired
 	private IUserService userservice;
 	@Autowired
@@ -159,6 +158,11 @@ public class DoctorSeviceImpl implements IDoctorService {
 	public Map<Long, String> getDoctorIdAndNames() {
 		List<Object[]> list = repo.getDoctorIdAndNames();
 		return MyCollectionsUtil.convertToMapIndex(list);
+	}
+
+	@Override
+	public List<Doctor> findDoctorBySpecName(Long specId) {
+		return repo.findDoctorBySpecName(specId);
 	}
 
 }

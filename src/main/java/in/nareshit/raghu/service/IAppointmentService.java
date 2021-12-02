@@ -9,6 +9,7 @@ import in.nareshit.raghu.entity.Appointment;
  *  Generated F/w:SHWR-Framework 
  */
 public interface IAppointmentService {
+
 	Long saveAppointment(Appointment appointment);
 	void updateAppointment(Appointment appointment);
 	void deleteAppointment(Long id);
