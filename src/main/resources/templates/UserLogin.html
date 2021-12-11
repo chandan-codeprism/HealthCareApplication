@@ -1,0 +1,51 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<div th:replace="fragments/commonui :: header"></div>
+
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h3>USER LOGIN PAGE</h3>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/login}" method="POST">
+                <!-- row#1 -->
+                <div class="row">
+                    <div class="col-3">
+                        <label>USERNAME </label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                               required autofocus/>
+                    </div>
+                    <div class="col-5">
+                        <span id="usernameError"></span>
+                    </div>
+                </div>
+
+                <!-- row#2 -->
+                <div class="row">
+                    <div class="col-3">
+                        <label>PASSWORD</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="password"
+                               required/>
+                    </div>
+                    <div class="col-5">
+                        <span id="passwordError"></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+        </div>
+        <div th:if="${param.error}" class="card-footer text-center bg-danger text-white">
+            Login Failed
+        </div>
+        <div th:if="${param.logout}" class="card-footer text-center bg-info text-white">
+            Logout Successfully
+        </div>
+    </div>
+</div>
+</body>
+</html>

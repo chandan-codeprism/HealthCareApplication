@@ -84,16 +84,16 @@ public class AppointmentController {
 
         //if they did not select any specialization
         List<Doctor> doctorList = null;
-        String message=null;
+        String message = null;
         if (specId == 0) {
             doctorList = doctorservice.getAllDoctors();
-            message="Result: All Doctors";
+            message = "Result: All Doctors";
         } else {
             doctorList = doctorservice.findDoctorBySpecName(specId);
-            message="Result: "+specializationService.getOneSpecialization(specId).getSpecName()+" Doctors";
+            message = "Result: " + specializationService.getOneSpecialization(specId).getSpecName() + " Doctors";
         }
         model.addAttribute("doctorList", doctorList);
-        model.addAttribute("message",message);
+        model.addAttribute("message", message);
         return "AppointmentSearch";
     }
 
@@ -102,13 +102,12 @@ public class AppointmentController {
     public String showSlots(
             @RequestParam Long id,
             Model model
-            )
-    {
+    ) {
         //fetch appointments based on doctor id
         List<Object[]> list = service.getAppointmentsByDoctor(id);
-        model.addAttribute("list",list);
-        Doctor doctor=doctorservice.getOneDoctor(id);
-        model.addAttribute("message","Results showing for : "+doctor.getFirstName()+" "+doctor.getLastName());
+        model.addAttribute("list", list);
+        Doctor doctor = doctorservice.getOneDoctor(id);
+        model.addAttribute("message", "Results showing for : " + doctor.getFirstName() + " " + doctor.getLastName());
         return "AppointmentSlots";
     }
 }
