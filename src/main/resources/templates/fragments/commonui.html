@@ -15,8 +15,8 @@
 </head>
 
 <nav th:fragment="menu"
-     class="navbar navbar-expand-lg navbar navbar-dark bg-secondary">
-    <a class="navbar-brand" href="#">HealthCare</a>
+     class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="@{/user/setup}">HealthCare</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -33,8 +33,8 @@
                    role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> Specialization </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" th:href="@{/spec/register}">Add</a> <a
-                        class="dropdown-item" th:href="@{/spec/all}">View</a>
+                    <a class="dropdown-item" th:href="@{/spec/register}">Add</a>
+                    <a class="dropdown-item" th:href="@{/spec/all}">View</a>
                 </div>
             </li>
             <!-- SPECIALIZATION END -->
@@ -45,8 +45,8 @@
                    role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> Doctor </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" th:href="@{/doctor/register}">Add</a> <a
-                        class="dropdown-item" th:href="@{/doctor/all}">View</a>
+                    <a class="dropdown-item" th:href="@{/doctor/register}">Add</a>
+                    <a class="dropdown-item" th:href="@{/doctor/all}">View</a>
                 </div>
             </li>
             <!-- DOCTOR END -->
