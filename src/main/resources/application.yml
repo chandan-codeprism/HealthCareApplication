@@ -37,7 +37,7 @@ spring:
 #MasterAcount Config
 master:
  user:
-  name: NIT-Chandan
+  name: CHANDAN
   email: nckr2014@gmail.com
       
     
