@@ -25,6 +25,11 @@ public class UserController {
         return "UserLogin";
     }
 
+    @GetMapping("/profile")
+    public String showProfile() {
+        return "UserProfile";
+    }
+
     @GetMapping("/setup")
     public String setup(HttpSession session, Principal p) {
 
@@ -36,6 +41,9 @@ public class UserController {
 
         //store in http session
         session.setAttribute("userOb", user);
+
+        //setting timeout
+        session.setMaxInactiveInterval(10*60);
 
         return "UserHome";
     }
