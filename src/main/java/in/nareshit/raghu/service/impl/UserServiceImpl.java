@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import in.nareshit.raghu.entity.User;
 import in.nareshit.raghu.service.IUserService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements IUserService, UserDetailsService {
@@ -39,6 +40,14 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	public Optional<User> findByUsername(String username) {
 
 		return repo.findByUsername(username);
+	}
+
+	@Override
+	@Transactional
+	public void updateUserPwd(String pwd, Long userId) {
+		String encPwd=passwordEncoder.encode(pwd);
+		repo.updateUserPwd(encPwd,userId);
+
 	}
 
 	@Override

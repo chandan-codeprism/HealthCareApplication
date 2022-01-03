@@ -42,12 +42,9 @@ public class PatientServiceImpl implements IPatientService {
 			user.setRole(UserRoles.PATIENT.name());
 			Long genId = userservice.saveUser(user);
 			if (genId != null)
-				new Thread(new Runnable() {
-
-					public void run() {
-						String text = "Your name is " + patient.getEmail() + ", password is " + pwd;
-						mailUtil.send(patient.getEmail(), "PATIENT ADDED", text);
-					}
+				new Thread(() -> {
+					String text = "Your name is " + patient.getEmail() + ", password is " + pwd;
+					mailUtil.send(patient.getEmail(), "PATIENT ADDED", text);
 				}).start();
 		}
 		return id;
