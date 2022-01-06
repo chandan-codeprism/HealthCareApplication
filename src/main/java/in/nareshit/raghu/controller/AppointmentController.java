@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -109,5 +110,13 @@ public class AppointmentController {
         Doctor doctor = doctorservice.getOneDoctor(id);
         model.addAttribute("message", "Results showing for : " + doctor.getFirstName() + " " + doctor.getLastName());
         return "AppointmentSlots";
+    }
+
+    //Fetch appointments based on doctor email
+    @GetMapping("/currentDoc")
+    public String getCurrentDocAppointments(Model model, Principal principal) {
+        List<Object[]> list = service.getAppointmentsByDoctorEmail(principal.getName());
+        model.addAttribute("list", list);
+        return "AppointmentForDoctor";
     }
 }
