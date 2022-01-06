@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-    @Query("SELECT aptm.date, aptm.noOfSlots, aptm.fee FROM Appointment aptm INNER JOIN aptm.doctor as doctor WHERE doctor.id=:docId")
+    @Query("SELECT aptm.date, aptm.noOfSlots, aptm.fee, aptm.id FROM Appointment aptm INNER JOIN aptm.doctor as doctor WHERE doctor.id=:docId")
     public List<Object[]> getAppointmentsByDoctor(Long docId);
 
     @Query("SELECT aptm.date, aptm.noOfSlots, aptm.fee, aptm.details FROM Appointment aptm INNER JOIN aptm.doctor as doctor WHERE doctor.email=:userName")
