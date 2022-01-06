@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
 @RequestMapping("/slots")
@@ -62,5 +63,25 @@ public class SlotsRequestController {
             model.addAttribute("message", "BOOKING REQUEST ALREADY MADE FOR THIS APPOINTMENT/DATE");
         }
         return "SlotRequestMessage";
+    }
+
+
+    @GetMapping("/all")
+    public String viewAllReq(Model model) {
+        List<SlotRequest> list = requestService.getAllSlotRequest();
+        model.addAttribute("list", list);
+        return "SlotRequestData";
+    }
+
+    @GetMapping("/accept")
+    public String updateSlotAccept(@RequestParam Long id){
+        requestService.updateSlotRequestStatus(id,"ACCEPTED");
+        return "redirect:all";
+    }
+
+    @GetMapping("/reject")
+    public String updateSlotReject(@RequestParam Long id){
+        requestService.updateSlotRequestStatus(id,"REJECTED");
+        return "redirect:all";
     }
 }

@@ -77,7 +77,19 @@
             </li>
             <!-- APPOINTMENT END -->
 
-            <!-- LOGOUT START -->
+            <!-- SLOT START -->
+            <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown6"
+                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"> <b>Slots Request</b> </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/slots/all}" sec:authorize="hasAuthority('ADMIN')">View All</a>
+                    <a class="dropdown-item" th:href="@{/slots/patient}" sec:authorize="hasAuthority('PATIENT')">View My Slots</a>
+                </div>
+            </li>
+            <!-- SLOT END -->
+
+            <!-- USER START -->
             <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5"
                    role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -90,7 +102,7 @@
                     <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                 </div>
             </li>
-            <!-- LOGOUT END -->
+            <!-- USER END -->
         </ul>
     </div>
 </nav>
