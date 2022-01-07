@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -73,15 +74,24 @@ public class SlotsRequestController {
         return "SlotRequestData";
     }
 
+    @GetMapping("/patient")
+    public String viewMyReq(
+            Model model, Principal principal) {
+        String email = principal.getName();
+        List<SlotRequest> list = requestService.viewSlotsByPatientMail(email);
+        model.addAttribute("list", list);
+        return "SlotRequestPatientData";
+    }
+
     @GetMapping("/accept")
-    public String updateSlotAccept(@RequestParam Long id){
-        requestService.updateSlotRequestStatus(id,"ACCEPTED");
+    public String updateSlotAccept(@RequestParam Long id) {
+        requestService.updateSlotRequestStatus(id, "ACCEPTED");
         return "redirect:all";
     }
 
     @GetMapping("/reject")
-    public String updateSlotReject(@RequestParam Long id){
-        requestService.updateSlotRequestStatus(id,"REJECTED");
+    public String updateSlotReject(@RequestParam Long id) {
+        requestService.updateSlotRequestStatus(id, "REJECTED");
         return "redirect:all";
     }
 }

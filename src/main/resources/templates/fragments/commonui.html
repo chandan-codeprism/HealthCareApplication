@@ -84,7 +84,8 @@
                    aria-expanded="false"> <b>Slots Request</b> </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:href="@{/slots/all}" sec:authorize="hasAuthority('ADMIN')">View All</a>
-                    <a class="dropdown-item" th:href="@{/slots/patient}" sec:authorize="hasAuthority('PATIENT')">View My Slots</a>
+                    <a class="dropdown-item" th:href="@{/slots/patient}" sec:authorize="hasAuthority('PATIENT')">My Slots</a>
+                    <a class="dropdown-item" th:href="@{/slots/doctor}" sec:authorize="hasAuthority('DOCTOR')">My Slots</a>
                 </div>
             </li>
             <!-- SLOT END -->

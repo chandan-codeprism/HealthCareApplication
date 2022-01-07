@@ -35,4 +35,5 @@ public class SlotRequestServiceImpl implements ISlotRequestService {
     public List<SlotRequest> viewSlotsByPatientMail(String patientMail) {
         return repository.getAllPatientSlots(patientMail);
     }
+
 }
