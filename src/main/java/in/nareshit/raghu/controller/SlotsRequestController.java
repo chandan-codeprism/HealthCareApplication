@@ -1,5 +1,6 @@
 package in.nareshit.raghu.controller;
 
+import in.nareshit.raghu.constants.SlotStatus;
 import in.nareshit.raghu.entity.Appointment;
 import in.nareshit.raghu.entity.Patient;
 import in.nareshit.raghu.entity.SlotRequest;
@@ -49,7 +50,7 @@ public class SlotsRequestController {
         SlotRequest slotRequest = new SlotRequest();
         slotRequest.setAppointment(appointment);
         slotRequest.setPatient(patient);
-        slotRequest.setStatus("PENDING");
+        slotRequest.setStatus(SlotStatus.PENDING.name());
 
         try {
             requestService.saveSlotRequest(slotRequest);
@@ -85,9 +86,9 @@ public class SlotsRequestController {
 
     @GetMapping("/accept")
     public String updateSlotAccept(@RequestParam Long id) {
-        requestService.updateSlotRequestStatus(id, "ACCEPTED");
+        requestService.updateSlotRequestStatus(id, SlotStatus.ACCEPTED.name());
         SlotRequest slotRequest = requestService.getOneSlotRequest(id);
-        if (slotRequest.getStatus().equals("ACCEPTED")) {
+        if (slotRequest.getStatus().equals(SlotStatus.ACCEPTED.name())) {
             appointmentService.updateSlotCountForAppointments(slotRequest.getAppointment().getId(), -1);
         }
         return "redirect:all";
@@ -95,15 +96,15 @@ public class SlotsRequestController {
 
     @GetMapping("/reject")
     public String updateSlotReject(@RequestParam Long id) {
-        requestService.updateSlotRequestStatus(id, "REJECTED");
+        requestService.updateSlotRequestStatus(id, SlotStatus.REJECTED.name());
         return "redirect:all";
     }
 
     @GetMapping("/cancel")
     public String cancelSlotRequest(@RequestParam Long id) {
         SlotRequest slotRequest = requestService.getOneSlotRequest(id);
-        if (slotRequest.getStatus().equals("ACCEPTED")) {
-            requestService.updateSlotRequestStatus(id, "CANCELLED");
+        if (slotRequest.getStatus().equals(SlotStatus.ACCEPTED.name())) {
+            requestService.updateSlotRequestStatus(id, SlotStatus.CANCELLED.name());
             appointmentService.updateSlotCountForAppointments(slotRequest.getAppointment().getId(), 1);
         }
         return "redirect:patient";
