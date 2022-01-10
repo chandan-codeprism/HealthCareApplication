@@ -9,14 +9,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SlotRequestRepository extends JpaRepository<SlotRequest,Long> {
+public interface SlotRequestRepository extends JpaRepository<SlotRequest, Long> {
 
     @Modifying
     @Query("UPDATE SlotRequest SET status=:status WHERE id=:id")
-    void updateSlotRequestStatus(Long id,String status);
+    void updateSlotRequestStatus(Long id, String status);
 
     @Modifying
     @Query("SELECT sr FROM SlotRequest sr INNER JOIN sr.patient as patient WHERE patient.email=:patientMail")
     List<SlotRequest> getAllPatientSlots(String patientMail);
+
+    @Query("SELECT sr FROM SlotRequest sr INNER JOIN sr.appointment as appointment INNER JOIN appointment.doctor as doctor WHERE doctor.email = :doctorMail AND sr.status=:status")
+    List<SlotRequest> getAllDoctorSlots(String doctorMail, String status);
 
 }

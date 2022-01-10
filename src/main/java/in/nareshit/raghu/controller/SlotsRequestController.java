@@ -76,12 +76,21 @@ public class SlotsRequestController {
     }
 
     @GetMapping("/patient")
-    public String viewMyReq(
+    public String viewMySlotReqPatient(
             Model model, Principal principal) {
         String email = principal.getName();
         List<SlotRequest> list = requestService.viewSlotsByPatientMail(email);
         model.addAttribute("list", list);
         return "SlotRequestPatientData";
+    }
+
+    @GetMapping("/doctor")
+    public String viewMySlotReqDoctor(
+            Model model, Principal principal) {
+        String email = principal.getName();
+        List<SlotRequest> list = requestService.viewSlotsByDoctorMail(email);
+        model.addAttribute("list", list);
+        return "SlotRequestDoctorData";
     }
 
     @GetMapping("/accept")

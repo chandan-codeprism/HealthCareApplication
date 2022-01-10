@@ -1,5 +1,6 @@
 package in.nareshit.raghu.service.impl;
 
+import in.nareshit.raghu.constants.SlotStatus;
 import in.nareshit.raghu.entity.SlotRequest;
 import in.nareshit.raghu.repo.SlotRequestRepository;
 import in.nareshit.raghu.service.ISlotRequestService;
@@ -35,6 +36,11 @@ public class SlotRequestServiceImpl implements ISlotRequestService {
     @Override
     public List<SlotRequest> viewSlotsByPatientMail(String patientMail) {
         return repository.getAllPatientSlots(patientMail);
+    }
+
+    @Override
+    public List<SlotRequest> viewSlotsByDoctorMail(String doctorMail) {
+        return repository.getAllDoctorSlots(doctorMail, SlotStatus.ACCEPTED.name());
     }
 
     @Override
