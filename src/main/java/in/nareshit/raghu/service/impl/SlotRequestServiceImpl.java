@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SlotRequestServiceImpl implements ISlotRequestService {
@@ -28,7 +29,7 @@ public class SlotRequestServiceImpl implements ISlotRequestService {
     @Override
     @Transactional
     public void updateSlotRequestStatus(Long id, String status) {
-        repository.updateSlotRequestStatus(id,status);
+        repository.updateSlotRequestStatus(id, status);
     }
 
     @Override
@@ -36,4 +37,11 @@ public class SlotRequestServiceImpl implements ISlotRequestService {
         return repository.getAllPatientSlots(patientMail);
     }
 
+    @Override
+    public SlotRequest getOneSlotRequest(Long id) {
+        Optional<SlotRequest> optional = repository.findById(id);
+        if (optional != null)
+            return optional.get();
+        return null;
+    }
 }

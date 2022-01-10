@@ -86,6 +86,10 @@ public class SlotsRequestController {
     @GetMapping("/accept")
     public String updateSlotAccept(@RequestParam Long id) {
         requestService.updateSlotRequestStatus(id, "ACCEPTED");
+        SlotRequest slotRequest = requestService.getOneSlotRequest(id);
+        if (slotRequest.getStatus().equals("ACCEPTED")) {
+            appointmentService.updateSlotCountForAppointments(slotRequest.getAppointment().getId(), -1);
+        }
         return "redirect:all";
     }
 
@@ -93,5 +97,15 @@ public class SlotsRequestController {
     public String updateSlotReject(@RequestParam Long id) {
         requestService.updateSlotRequestStatus(id, "REJECTED");
         return "redirect:all";
+    }
+
+    @GetMapping("/cancel")
+    public String cancelSlotRequest(@RequestParam Long id) {
+        SlotRequest slotRequest = requestService.getOneSlotRequest(id);
+        if (slotRequest.getStatus().equals("ACCEPTED")) {
+            requestService.updateSlotRequestStatus(id, "CANCELLED");
+            appointmentService.updateSlotCountForAppointments(slotRequest.getAppointment().getId(), 1);
+        }
+        return "redirect:patient";
     }
 }

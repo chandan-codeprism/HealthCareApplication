@@ -9,6 +9,9 @@ public interface ISlotRequestService {
     //Patient can book slot
     Long saveSlotRequest(SlotRequest sr);
 
+    //Fetch one
+    SlotRequest getOneSlotRequest(Long id);
+
     //Admin can view all slots
     List<SlotRequest> getAllSlotRequest();
 
